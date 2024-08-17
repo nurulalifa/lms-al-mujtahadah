@@ -5,10 +5,8 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">DAFTAR USER</h4>
-                    <p class="card-description">
-                      Add class <code>.table-striped</code>
-                    </p>
+                    <h4 class="card-title">DAFTAR RUANGAN</h4>
+                    <a href="{{url('ruangan/tambah')}}"> <button type="button" class="btn btn-primary btn-rounded btn-fw">Tambah Data</button></a>
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
@@ -171,7 +169,5 @@
                 </div>
               </div>
         </div>
-
-
     </div>
 @endsection

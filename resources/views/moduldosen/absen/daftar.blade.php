@@ -5,8 +5,8 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">DAFTAR MATAKULIAH</h4>
-                    <a href="{{url('matkul/tambah')}}"> <button type="button" class="btn btn-primary btn-rounded btn-fw">Tambah Data</button></a>
+                    <h4 class="card-title">DAFTAR ABSEN</h4>
+                    <a href="{{url('absen/tambah')}}"> <button type="button" class="btn btn-primary btn-rounded btn-fw">Tambah Data</button></a>
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>

@@ -349,11 +349,11 @@
                         </a>
                         <div  id="form-elements">
                             <ul class="nav flex-column">
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">RPS</a></li>
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Kelas</a></li>
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Absen</a></li>
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Materi</a></li>
-                                <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Nilai</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{url('/daftar/rps')}}">RPS</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{url('/daftar/kelas')}}">Kelas</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{url('/daftar/absen')}}">Absen</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{url('/daftar/materi')}}">Materi</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{url('/daftar/nilai')}}">Nilai</a></li>
                             </ul>
                         </div>
                     </li>
@@ -365,10 +365,10 @@
                         </a>
                         <div >
                             <ul class="nav flex-column">
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Absen</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Ruang Belajar</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Upload Tugas</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">KHS</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{url('/daftar/absen')}}">Absen</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{url('/ruang-belajar')}}">Ruang Belajar</a></li>
+                                {{-- <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Upload Tugas</a></li> --}}
+                                <li class="nav-item"> <a class="nav-link" href="{{url('/khs')}}">KHS</a></li>
                             </ul>
                         </div>
                     </li>
