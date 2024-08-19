@@ -21,14 +21,22 @@ class BackendController extends Controller
         return view('backend.dosen.daftar');
     }
     public function tambah_dosen(){
-        return view('backend.dosen.tambah');
+        return view('backend.dosen.form');
     }
+    public function simpan_dosen(){
+
+    }
+
+
+
+
+
 
     public function daftar_mahasiswa(){
         return view('backend.mahasiswa.daftar');
     }
     public function tambah_mahasiswa(){
-        return view('backend.mahasiswa.tambah');
+        return view('backend.mahasiswa.form');
     }
 
 
