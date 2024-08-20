@@ -27,23 +27,39 @@ Route::get('/user/tambah',[BackendController::class,'tambah_user']);
 //dosen
 Route::get('/dosen/daftar',[BackendController::class,'daftar_dosen']);
 Route::get('/dosen/tambah',[BackendController::class,'tambah_dosen']);
+Route::get('/dosen/delete/{id}', [BackendController::class,'delete_dosen']);
 Route::post('/dosen/simpan',[BackendController::class,'simpan_dosen']);
+Route::get('/dosen/detail/{id}',[BackendController::class,'detail_dosen']);
+Route::get('/dosen/edit/{id}',[BackendController::class,'edit_dosen']);
+Route::post('/dosen/update/{id}',[BackendController::class,'update_dosen']);
 
 
 //mahasiswa
 Route::get('/mahasiswa/daftar',[BackendController::class,'daftar_mahasiswa']);
 Route::get('/mahasiswa/tambah',[BackendController::class,'tambah_mahasiswa']);
+Route::post('/mahasiswa/simpan',[BackendController::class,'simpan_mahasiswa']);
+Route::get('/mahasiswa/detail/{id}',[BackendController::class,'detail_mahasiswa']);
+Route::get('/mahasiswa/edit/{id}',[BackendController::class,'edit_mahasiswa']);
+Route::post('mahasiswa/update/{id}',[BackendController::class,'update_mahasiswa']);
+Route::get('/mahasiswa/delete/{id}',[BackendController::class,'delete_mahasiswa']);
 
 
 //mata kuliah
 Route::get('/matkul/daftar',[BackendController::class,'daftar_matkul']);
 Route::get('/matkul/tambah',[BackendController::class,'tambah_matkul']);
+Route::post('/matkul/simpan',[BackendController::class,'simpan_matkul']);
+Route::get('/matkul/edit/{id}',[BackendController::class,'edit_matkul']);
+Route::post('/matkul/update/{id}',[BackendController::class,'update_matkul']);
+Route::get('/matkul/delete/{id}',[BackendController::class,'delete_matkul']);
 
 
 //ruangan
 Route::get('/ruangan/daftar',[BackendController::class,'daftar_ruangan']);
 Route::get('/ruangan/tambah',[BackendController::class,'tambah_ruangan']);
-
+Route::post('/ruangan/simpan',[BackendController::class,'simpan_ruangan']);
+Route::get('/ruangan/edit/{id}',[BackendController::class,'edit_ruangan']);
+Route::post('/ruangan/update/{id}',[BackendController::class,'update_ruangan']);
+Route::get('/ruangan/delete/{id}',[BackendController::class,'delete_ruangan']);
 
 //jadwal kuliah
 Route::get('/jadwalkuliah/daftar',[BackendController::class,'daftar_jadwalkuliah']);

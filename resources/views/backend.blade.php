@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('backend/dist/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/assets/vendors/ti-icons/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/assets/vendors/font-awesome/css/font-awesome.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('backend/dist/assets/vendors/typicons/typicons.css')}}">
     <link rel="stylesheet" href="{{asset('backend/dist/assets/vendors/simple-line-icons/css/simple-line-icons.css')}}">
     {{-- backend/dist/assets/vendors/css/vendor.bundle.base.css --}}
@@ -17,9 +18,11 @@
     <link rel="stylesheet" href="{{asset('backend/dist/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css')}}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    {{-- <link rel="stylesheet" href="{{asset('backend/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}"> --}}
-    <link rel="stylesheet" type="text/css" href="{{asset('backend/dist/assets/js/select.dataTables.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('backend/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('backend/dist/assets/js/select.dataTables.min.css')}}"> --}}
     <!-- End plugin css for this page -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
+
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('backend/dist/assets/css/style.css')}}">
     <!-- endinject -->
@@ -54,11 +57,11 @@
             </button>
           </div>
           <div>
-            <a class="navbar-brand brand-logo" href="index.html">
-              <img src="assets/images/logo.svg" alt="logo" />
+            <a class="navbar-brand brand-logo" href="{{url('/dashboard')}}">
+              <img src="{{asset('backend/dist/assets/images/logo.svg')}}" alt="logo" />
             </a>
-            <a class="navbar-brand brand-logo-mini" href="index.html">
-              <img src="assets/images/logo-mini.svg" alt="logo" />
+            <a class="navbar-brand brand-logo-mini" href="{{url('/dashboard')}}">
+              <img src="{{asset('backend/dist/assets/images/logo-mini.svg')}}" alt="logo" />
             </a>
           </div>
         </div>
@@ -168,7 +171,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="assets/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                    <img src="{{asset('backend/dist/assets/images/faces/face10.jpg')}}" alt="image" class="img-sm profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow py-2">
                     <p class="preview-subject ellipsis fw-medium text-dark">Marian Garner </p>
@@ -177,7 +180,7 @@
                 </a>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="assets/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                    <img src="{{asset('backend/dist/assets/images/faces/face12.jpg')}}" alt="image" class="img-sm profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow py-2">
                     <p class="preview-subject ellipsis fw-medium text-dark">David Grey </p>
@@ -186,7 +189,7 @@
                 </a>
                 <a class="dropdown-item preview-item">
                   <div class="preview-thumbnail">
-                    <img src="assets/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                    <img src="{{asset('backend/dist/assets/images/faces/face1.jpg')}}" alt="image" class="img-sm profile-pic">
                   </div>
                   <div class="preview-item-content flex-grow py-2">
                     <p class="preview-subject ellipsis fw-medium text-dark">Travis Jenkins </p>
@@ -197,10 +200,10 @@
             </li>
             <li class="nav-item dropdown d-none d-lg-block user-dropdown">
               <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="img-xs rounded-circle" src="assets/images/faces/face8.jpg" alt="Profile image"> </a>
+                <img class="img-xs rounded-circle" src="{{asset('backend/dist/assets/images/faces/face8.jpg')}}" alt="Profile image"> </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                 <div class="dropdown-header text-center">
-                  <img class="img-md rounded-circle" src="assets/images/faces/face8.jpg" alt="Profile image">
+                  <img class="img-md rounded-circle" src="{{asset('backend/dist/assets/images/faces/face8.jpg')}}" alt="Profile image">
                   <p class="mb-1 mt-3 fw-semibold">Allen Moreno</p>
                   <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
                 </div>
@@ -305,5 +308,14 @@
     <script src="{{asset('backend/dist/assets/js/dashboard.js')}}"></script>
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" defer></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
   </body>
 </html>
