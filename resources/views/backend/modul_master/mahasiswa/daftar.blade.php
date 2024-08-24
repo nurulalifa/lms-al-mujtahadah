@@ -3,7 +3,7 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Input Ruangan</h4>
+                <h4 class="card-title">Daftar Mahasiswa</h4>
                 <p> <a href="{{ url('mahasiswa/tambah') }}"> <button type="button"
                             class="btn btn-primary btn-rounded btn-fw">Tambah Data</button></a></p>
                 <div class="table">
@@ -52,5 +52,5 @@
             </div>
         </div>
     </div>
-   
+
 @endsection

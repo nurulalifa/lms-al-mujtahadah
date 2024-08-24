@@ -258,10 +258,16 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{url('ruangan/daftar')}}" >
-                <i class="menu-icon mdi mdi-account-circle-outline"></i>
+                <i class="menu-icon mdi mdi-layers-outline"></i>
                 <span class="menu-title">Ruangan</span>
               </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('jadwalkul/daftar')}}" >
+                  <i class="menu-icon mdi mdi-layers-outline"></i>
+                  <span class="menu-title">Penjadwalan Kuliah</span>
+                </a>
+              </li>
 
 
             <li class="nav-item nav-category">Dosen</li>

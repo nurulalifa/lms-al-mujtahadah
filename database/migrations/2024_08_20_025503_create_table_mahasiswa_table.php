@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('tempat_lahir');
             $table->date('tgl');
             $table->string('jenis_kelamin');
-            $table->string('agamal');
+            $table->string('agama');
             $table->string('asal_sekolah');
             $table->string('nim');
             $table->string('email');
