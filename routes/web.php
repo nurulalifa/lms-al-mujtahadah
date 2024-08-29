@@ -3,18 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\BackendController;
-use App\Http\Controllers\DosenController;
-use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\MahasiswaController;
-use App\Http\Controllers\MatkulController;
-use App\Http\Controllers\modul_master\DosenController as Modul_masterDosenController;
-use App\Http\Controllers\modul_master\JadwalController as Modul_masterJadwalController;
-use App\Http\Controllers\modul_master\MahasiswaController as Modul_masterMahasiswaController;
-use App\Http\Controllers\modul_master\MatkulController as Modul_masterMatkulController;
-use App\Http\Controllers\modul_master\RuanganController as Modul_masterRuanganController;
-use App\Http\Controllers\ModulDosenController;
-use App\Http\Controllers\ModulMahasiswaController;
-use App\Http\Controllers\RuanganController;
+
+use App\Http\Controllers\LMS\modul_master\DosenController as Modul_masterDosenController;
+use App\Http\Controllers\LMS\modul_master\JadwalController as Modul_masterJadwalController;
+use App\Http\Controllers\LMS\modul_master\MahasiswaController as Modul_masterMahasiswaController;
+use App\Http\Controllers\LMS\modul_master\MatkulController as Modul_masterMatkulController;
+use App\Http\Controllers\LMS\modul_master\RuanganController as Modul_masterRuanganController;
+use App\Http\Controllers\LMS\modul_master\ProdiController as Modul_masterProdiController;
+
+use App\Http\Controllers\LMS\modul_dosen\Dosen_MatkulController as Modul_Dosen;
+use App\Http\Controllers\LMS\modul_dosen\RPSController as RPRController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -53,6 +52,13 @@ Route::get('/mahasiswa/edit/{id}',[Modul_masterMahasiswaController::class,'edit_
 Route::post('mahasiswa/update/{id}',[Modul_masterMahasiswaController::class,'update_mahasiswa']);
 Route::get('/mahasiswa/delete/{id}',[Modul_masterMahasiswaController::class,'delete_mahasiswa']);
 
+//prodi
+Route::get('/prodi/daftar',[Modul_masterProdiController::class,'daftar_prodi']);
+Route::get('/prodi/tambah',[Modul_masterProdiController::class,'tambah_prodi']);
+Route::post('/prodi/simpan',[Modul_masterProdiController::class,'simpan_prodi']);
+Route::get('/prodi/edit/{id}',[Modul_masterProdiController::class,'edit_prodi']);
+Route::post('/prodi/update/{id}',[Modul_masterProdiController::class,'update_prodi']);
+Route::get('/prodi/delete/{id}',[Modul_masterProdiController::class,'delete_prodi']);
 
 //mata kuliah
 Route::get('/matkul/daftar',[Modul_masterMatkulController::class,'daftar_matkul']);
@@ -87,6 +93,26 @@ Route::get('/jadwalkul/mahasiswa/hapus/{id}/{id_mahasiswa}',[Modul_masterJadwalC
 
 //Modul Dosen
 //RPS
+Route::get('/dosen/matkul',[Modul_Dosen::class,'index']);
+Route::get('input/rps/{id}',[Modul_Dosen::class,'daftar_rps']);
+Route::get('form/rps/{id}/1',[RPRController::class,'form_rps1']);
+Route::get('form/rps/{id}/2',[RPRController::class,'form_rps2']);
+Route::get('form/rps/{id}/3',[RPRController::class,'form_rps3']);
+Route::get('form/rps/{id}/4',[RPRController::class,'form_rps4']);
+Route::get('form/rps/{id}/5',[RPRController::class,'form_rps5']);
+Route::get('form/rps/{id}/6',[RPRController::class,'form_rps6']);
+Route::get('form/rps/{id}/7',[RPRController::class,'form_rps7']);
+Route::get('form/rps/{id}/8',[RPRController::class,'form_rps8']);
+Route::get('form/rps/{id}/9',[RPRController::class,'form_rps9']);
+Route::get('form/rps/{id}/10',[RPRController::class,'form_rps10']);
+Route::get('form/rps/{id}/11',[RPRController::class,'form_rps11']);
+Route::get('form/rps/{id}/12',[RPRController::class,'form_rps12']);
+Route::get('form/rps/{id}/13',[RPRController::class,'form_rps13']);
+Route::get('form/rps/{id}/14',[RPRController::class,'form_rps14']);
+Route::get('form/rps/{id}/15',[RPRController::class,'form_rps15']);
+Route::get('form/rps/{id}/16',[RPRController::class,'form_rps16']);
+
+
 // Route::get('/rps/daftar',[ModulDosenController::class,'daftar_rps']);
 // Route::get('/rps/tambah',[ModulDosenController::class,'tambah_rps']);
 

@@ -17,7 +17,7 @@ class BackendController extends Controller
         return view('backend.index');
     }
     public function daftar_user(){
-        return view('backend.user.daftar');
+        return view('backend.modul_master.user.daftar');
     }
     // public function tambah_user(){
     //     return view('backend.user.tambah');

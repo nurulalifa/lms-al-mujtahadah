@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('nama');
             $table->string('kode');
             $table->integer('bobot');
-            $table->integer('id_dosen');
-            $table->integer('id_ruangan');
             $table->timestamps();
         });
     }

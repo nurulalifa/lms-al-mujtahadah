@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\modul_master;
+namespace App\Http\Controllers\LMS\modul_master;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
@@ -28,6 +28,8 @@ class JadwalController extends Controller
             'id_matkul'=>Request()->matkul,
             'jam_m'=>Request()->jam_m,
             'jam_k'=>Request()->jam_k,
+            'id_dosen'=>Request()->dosen,
+            'hari'=>Request()->hari
         ]);
         $data = $jadwal->id;
         Jadwal_Mahasiswa::create([
@@ -38,8 +40,9 @@ class JadwalController extends Controller
     }
     public function edit_jadwal($id){
         $data = Jadwal::findOrFail($id);
+        $dosen = Dosen::all();
         $matkul = Matkul::all();
-        return view('backend.modul_master.jadwalkuliah.edit',compact('data','matkul'));
+        return view('backend.modul_master.jadwalkuliah.edit',compact('data','matkul','dosen'));
     }
 
     public function update_jadwal($id){
@@ -47,6 +50,8 @@ class JadwalController extends Controller
         $data->id_matkul = Request()->id_matkul;
         $data->jam_m = Request()->jam_m;
         $data->jam_k = Request()->jam_k;
+        $data->hari = Request()->hari;
+        $data->id_dosen = Request()->dosen;
         $data->save();
         return redirect('/jadwalkul/daftar');
     }
@@ -74,6 +79,7 @@ class JadwalController extends Controller
     }
     public function hapus_mahasiswa($id, $id_mahasiswa)
     {
+        $data=
         // Menyaring entri berdasarkan 'id' dan 'id_mahasiswa'
         $data = Jadwal_Mahasiswa::where('id', $id)
                                 ->where('id_mahasiswa', $id_mahasiswa)

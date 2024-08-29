@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\modul_master;
+namespace App\Http\Controllers\LMS\modul_master;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
@@ -23,7 +23,6 @@ class MatkulController extends Controller
         Matkul::create([
             'nama'=>$request->nama,
             'kode'=>$request->kode,
-            'id_dosen'=>$request->id_dosen,
             'bobot'=>$request->bobot
         ]);
         return redirect('/matkul/daftar');
@@ -35,7 +34,6 @@ class MatkulController extends Controller
     public function update_matkul($id){
         $data=Matkul::findOrFail($id);
         $data->nama = Request()->nama;
-        $data->id_dosen = Request()->id_dosen;
         $data->kode = Request()->kode;
         $data->bobot = Request()->bobot;
         $data->save();

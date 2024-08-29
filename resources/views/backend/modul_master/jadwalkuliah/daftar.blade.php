@@ -11,9 +11,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Hari</th>
                                 <th>Nama Matkul</th>
                                 <th>Jam Masuk</th>
                                 <th>Jam Keluar</th>
+                                <th>Dosen Pengampu</th>
                                 <th>Option</th>
                             </tr>
                         </thead>
@@ -21,9 +23,11 @@
                             @foreach ($data as $d)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $d->hari }}</td>
                                     <td>{{ $d->id_matkul }}</td>
                                     <td> {{ $d->jam_m }} </td>
                                     <td> {{ $d->jam_k }} </td>
+                                    <td> {{ $d->id_dosen }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-inverse-info btn-fw"

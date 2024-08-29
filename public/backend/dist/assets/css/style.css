@@ -10618,6 +10618,7 @@ textarea.tt-hint, .select2-container--default .select2-selection--single textare
 }
 textarea.form-control-sm {
   min-height: 1.75rem;
+  
 }
 textarea.form-control-lg {
   min-height: 3.175rem;
