@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('table_rps', function (Blueprint $table) {
             $table->id();
+            $table->string('id_jadwal');
+            $table->string('id_matkul');
+            $table->string('pertemuan');
+            $table->string('kemampuan');
+            $table->string('bahan');
+            $table->string('metode');
+            $table->string('waktu');
+            $table->string('kriteria');
+            $table->string('bobot');
+            $table->string('jenis_ujian');
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ class Dosen_MatkulController extends Controller
     }
     public function daftar_rps($id){
         $jadwal = Jadwal::findOrFail($id);
-        // $rps = RPS::all();
-        return view('backend.moduldosen.daftar_rps',compact('jadwal'));
+        $rps = RPS::all();
+        return view('backend.moduldosen.daftar_rps',compact('jadwal','rps'));
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\BackendController;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LMS\modul_master\DosenController as Modul_masterDosenController;
 use App\Http\Controllers\LMS\modul_master\JadwalController as Modul_masterJadwalController;
 use App\Http\Controllers\LMS\modul_master\MahasiswaController as Modul_masterMahasiswaController;
@@ -13,7 +13,8 @@ use App\Http\Controllers\LMS\modul_master\ProdiController as Modul_masterProdiCo
 
 use App\Http\Controllers\LMS\modul_dosen\Dosen_MatkulController as Modul_Dosen;
 use App\Http\Controllers\LMS\modul_dosen\RPSController as RPRController;
-
+use App\Http\Controllers\LMS\modul_dosen\RPSController;
+use App\Models\RPS;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -24,14 +25,15 @@ Route::get('/',[FrontendController::class, 'index']);
 Route::get('/login',[FrontendController::class, 'formlogin']);
 Route::get('/register',[FrontendController::class,'formregister']);
 
+Auth::routes();
 
+Route::group(['middleware' => ['auth', 'role:admin']], function() {
 //Modul Master
 Route::get('/dashboard',[BackendController::class,'index']);
 
 //user
 Route::get('/user/daftar',[BackendController::class,'daftar_user']);
 Route::get('/user/tambah',[BackendController::class,'tambah_user']);
-
 
 //dosen
 Route::get('/dosen/daftar',[Modul_masterDosenController::class,'daftar_dosen']);
@@ -41,7 +43,6 @@ Route::post('/dosen/simpan',[Modul_masterDosenController::class,'simpan_dosen'])
 Route::get('/dosen/detail/{id}',[Modul_masterDosenController::class,'detail_dosen']);
 Route::get('/dosen/edit/{id}',[Modul_masterDosenController::class,'edit_dosen']);
 Route::post('/dosen/update/{id}',[Modul_masterDosenController::class,'update_dosen']);
-
 
 //mahasiswa
 Route::get('/mahasiswa/daftar',[Modul_masterMahasiswaController::class,'daftar_mahasiswa']);
@@ -68,7 +69,6 @@ Route::get('/matkul/edit/{id}',[Modul_masterMatkulController::class,'edit_matkul
 Route::post('/matkul/update/{id}',[Modul_masterMatkulController::class,'update_matkul']);
 Route::get('/matkul/delete/{id}',[Modul_masterMatkulController::class,'delete_matkul']);
 
-
 //ruangan
 Route::get('/ruangan/daftar',[Modul_masterRuanganController::class,'daftar_ruangan']);
 Route::get('/ruangan/tambah',[Modul_masterRuanganController::class,'tambah_ruangan']);
@@ -88,30 +88,35 @@ Route::get('/jadwalkul/mahasiswa/daftar/{id}',[Modul_masterJadwalController::cla
 Route::get('/jadwalkul/mahasiswa/tambah/{id}',[Modul_masterJadwalController::class, 'tambah_mahasiswa']);
 Route::post('/jadwalkul/mahasiswa/simpan/{id}',[Modul_masterJadwalController::class,'simpan_mahasiswa']);
 Route::get('/jadwalkul/mahasiswa/hapus/{id}/{id_mahasiswa}',[Modul_masterJadwalController::class, 'hapus_mahasiswa']);
-
+});
 
 
 //Modul Dosen
 //RPS
+Route::group(['middleware' => ['auth', 'role:dosen']], function() {
+Route::get('/dashboard',[BackendController::class,'index']);
 Route::get('/dosen/matkul',[Modul_Dosen::class,'index']);
-Route::get('input/rps/{id}',[Modul_Dosen::class,'daftar_rps']);
-Route::get('form/rps/{id}/1',[RPRController::class,'form_rps1']);
-Route::get('form/rps/{id}/2',[RPRController::class,'form_rps2']);
-Route::get('form/rps/{id}/3',[RPRController::class,'form_rps3']);
-Route::get('form/rps/{id}/4',[RPRController::class,'form_rps4']);
-Route::get('form/rps/{id}/5',[RPRController::class,'form_rps5']);
-Route::get('form/rps/{id}/6',[RPRController::class,'form_rps6']);
-Route::get('form/rps/{id}/7',[RPRController::class,'form_rps7']);
-Route::get('form/rps/{id}/8',[RPRController::class,'form_rps8']);
-Route::get('form/rps/{id}/9',[RPRController::class,'form_rps9']);
-Route::get('form/rps/{id}/10',[RPRController::class,'form_rps10']);
-Route::get('form/rps/{id}/11',[RPRController::class,'form_rps11']);
-Route::get('form/rps/{id}/12',[RPRController::class,'form_rps12']);
-Route::get('form/rps/{id}/13',[RPRController::class,'form_rps13']);
-Route::get('form/rps/{id}/14',[RPRController::class,'form_rps14']);
-Route::get('form/rps/{id}/15',[RPRController::class,'form_rps15']);
-Route::get('form/rps/{id}/16',[RPRController::class,'form_rps16']);
+Route::get('input/rps/{id}',[Modul_Dosen::class,'daftar_rps'])->name('rps');
+Route::get('rps/form/{id}',[RPRController::class,'form_rps']);
 
+// Route::get('rps/form/{id}/2',[RPRController::class,'form_rps2']);
+// Route::get('rps/form/{id}/3',[RPRController::class,'form_rps3']);
+// Route::get('rps/form/{id}/4',[RPRController::class,'form_rps4']);
+// Route::get('rps/form/{id}/5',[RPRController::class,'form_rps5']);
+// Route::get('rps/form/{id}/6',[RPRController::class,'form_rps6']);
+// Route::get('rps/form/{id}/7',[RPRController::class,'form_rps7']);
+// Route::get('rps/form/{id}/8',[RPRController::class,'form_rps8']);
+// Route::get('rps/form/{id}/9',[RPRController::class,'form_rps9']);
+// Route::get('rps/form/{id}/10',[RPRController::class,'form_rps10']);
+// Route::get('rps/form/{id}/11',[RPRController::class,'form_rps11']);
+// Route::get('rps/form/{id}/12',[RPRController::class,'form_rps12']);
+// Route::get('rps/form/{id}/13',[RPRController::class,'form_rps13']);
+// Route::get('rps/form/{id}/14',[RPRController::class,'form_rps14']);
+// Route::get('rps/form/{id}/15',[RPRController::class,'form_rps15']);
+// Route::get('rps/form/{id}/16',[RPRController::class,'form_rps16']);
+
+Route::post('rps/simpan/',[RPSController::class,'simpan_rps']);
+});
 
 // Route::get('/rps/daftar',[ModulDosenController::class,'daftar_rps']);
 // Route::get('/rps/tambah',[ModulDosenController::class,'tambah_rps']);
@@ -145,3 +150,11 @@ Route::get('form/rps/{id}/16',[RPRController::class,'form_rps16']);
 // //KHS
 // Route::get('/khs',[ModulMahasiswaController::class,'khs']);
 
+
+
+Route::group(['middleware' => ['auth', 'role:mahasiswa']], function() {
+    Route::get('/dashboard',[BackendController::class,'index']);
+
+});
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
