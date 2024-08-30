@@ -10,7 +10,8 @@ class RPSController extends Controller
 {
     public function form_rps($id){
         $jadwal = Jadwal::findOrFail($id);
-        $pertemuan =1;
+
+       $pertemuan = 1;
         return view('backend.moduldosen.rps.form_rps',compact('pertemuan','jadwal'));
     }
     public function simpan_rps(){
@@ -22,6 +23,7 @@ class RPSController extends Controller
             'id_matkul'=>$jadwal->id_matkul,
             'pertemuan'=>Request()->pertemuan,
             'kemampuan'=>Request()->kemampuan,
+            'pengalaman'=>Request()->pengalaman,
             'bahan'=>Request()->bahan,
             'metode'=>Request()->metode,
             'waktu'=>Request()->waktu,
@@ -29,56 +31,31 @@ class RPSController extends Controller
             'bobot'=>Request()->bobot,
             'jenis_ujian'=>Request()->jenis_ujian,
         ]);
-        return redirect()->route('rps');
+        return redirect('input/rps/'.$jadwal->id);
     }
-    public function form_rps2(){
-        return view('');
+    public function edit_rps($id){
+        $data = RPS::findOrFail($id);
+        return view('backend.moduldosen.rps.edit_rps',compact('data'));
     }
-    public function form_rps3(){
-        return view('');
-    }
-    public function form_rps4(){
-        return view('');
-    }
-    public function form_rps5(){
-        return view('');
-    }
-    public function form_rps6(){
-        return view('');
-    }
-    public function form_rps7(){
-        return view('');
-    }
-    public function form_rps8(){
-        return view('');
-    }
-    public function form_rps9(){
-        return view('');
-    }
-    public function form_rps10(){
-        return view('');
-    }
-    public function form_rps11(){
-        return view('');
-    }
-    public function form_rps12(){
-        return view('');
-    }
-    public function form_rps13(){
-        return view('');
-    }
-    public function form_rps14(){
-        return view('');
-    }
-    public function form_rps15(){
-        return view('');
-    }
-    public function form_rps16(){
-        return view('');
-    }
+    public function update_rps($id){
+        $data = RPS::findOrFail($id);
+        $data->pertemuan=Request()->pertemuan;
+        $data->kemampuan=Request()->kemampuan;
+        $data->pengalaman=Request()->pengalaman;
+        $data->bahan=Request()->bahan;
+        $data->metode=Request()->metode;
+        $data->waktu=Request()->waktu;
+        $data->kriteria=Request()->kriteria;
+        $data->bobot=Request()->bobot;
+        $data->jenis_ujian=Request()->jenis_ujian;
+        $data -> save();
 
-    public function simpan(){
-
+        return redirect('input/rps/'.$data->id_jadwal);
+    }
+    public function delete_rps($id){
+        $data = RPS::findOrFail($id);
+        $data->delete();
+        return redirect('input/rps/'.$data->id_jadwal);
     }
 
 }

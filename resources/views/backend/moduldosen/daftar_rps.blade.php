@@ -18,14 +18,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
                 @foreach ($rps as $r )
+              <tr>
                 <td>Pertemuan ke - {{$r->pertemuan}}</td>
                 <td>{{$r->bahan}}</td>
-                <td><a href="{{url('rps/form/'.$r->id)}}"><button class="badge badge-info">Detail RPS</button></a></td>
-                {{-- tambahkan '/'.$rps->id --}}
-                @endforeach
+                <td><a href="{{url('rps/edit/'.$r->id)}}"><button class="badge badge-info">Edit RPS</button></a>
+                    <a href="{{url('rps/delete/'.$r->id)}}"><button class="badge badge-danger">Delete RPS</button></a></td>
+                {{-- <td></td> --}}
               </tr>
+              @endforeach
 
 
             </tbody>

@@ -320,13 +320,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('dosen/matkul') }}">
                             <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                            <span class="menu-title">Perkuliahan</span>
+                            <span class="menu-title">Input RPS</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('user/daftar') }}">
+                        <a class="nav-link" href="{{ url('kelas/daftar') }}">
                             <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                            <span class="menu-title">Kirim RPS</span>
+                            <span class="menu-title">Perkuliahan</span>
                         </a>
                     </li>
                     <li class="nav-item">
