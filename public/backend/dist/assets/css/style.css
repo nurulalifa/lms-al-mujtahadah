@@ -10618,7 +10618,7 @@ textarea.tt-hint, .select2-container--default .select2-selection--single textare
 }
 textarea.form-control-sm {
   min-height: 1.75rem;
-  
+
 }
 textarea.form-control-lg {
   min-height: 3.175rem;
@@ -16605,6 +16605,7 @@ textarea.is-invalid.tt-hint, .select2-container--default .select2-selection--sin
 .py-1 {
   padding-top: 0.25rem !important;
   padding-bottom: 0.25rem !important;
+
 }
 
 .py-2 {
@@ -30380,4 +30381,8 @@ dl li {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+.word-wrap {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
 /*# sourceMappingURL=maps/style.css.map */

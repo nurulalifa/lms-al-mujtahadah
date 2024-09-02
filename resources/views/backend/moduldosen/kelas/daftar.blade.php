@@ -1,4 +1,4 @@
-@extends('../backend')
+@extends('../backenddosen')
 @section('content')
     <div class="row mb-5">
         @foreach ($jadwal as $j )
@@ -11,7 +11,7 @@
                     <h6 class="card-subtitle text-muted">{{$j->hari}}</h6>
                     <p class="card-text">{{$j->jam_m}} - {{$j->jam_k}}</p>
                     <a href="{{url('input/rps/'.$j->id)}}" class="card-link">Input RPS</a>
-                    {{-- <a href="{{url('kelas/'.$j->id)}}" class="card-link">Kelas</a> --}}
+                    <a href="{{url('dosen/jadwal/'.$j->id)}}" class="card-link">Kelas</a>
                 </div>
             </div>
         </div>

@@ -17,7 +17,9 @@ class Dosen_MatkulController extends Controller
         $jadwal = Jadwal::findOrFail($id);
         $rps = RPS::where('id_jadwal', $id)
         ->where('id_matkul', $jadwal->id_matkul)
+        ->orderBy('pertemuan', 'asc')
         ->get();
+
         // dd($rps,$id, $jadwal->id_matkul);
         return view('backend.moduldosen.daftar_rps',compact('jadwal','rps'));
     }

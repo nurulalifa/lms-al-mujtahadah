@@ -1,4 +1,4 @@
-@extends('../backend')
+@extends('../backenddosen')
 @section('content')
     <div class="card">
       <div class="card-body">
@@ -21,7 +21,7 @@
                 @foreach ($rps as $r )
               <tr>
                 <td>Pertemuan ke - {{$r->pertemuan}}</td>
-                <td>{{$r->bahan}}</td>
+                <td><p class="word-wrap">{{$r->bahan}}</p></td>
                 <td><a href="{{url('rps/edit/'.$r->id)}}"><button class="badge badge-info">Edit RPS</button></a>
                     <a href="{{url('rps/delete/'.$r->id)}}"><button class="badge badge-danger">Delete RPS</button></a></td>
                 {{-- <td></td> --}}

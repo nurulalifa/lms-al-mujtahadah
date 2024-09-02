@@ -221,25 +221,8 @@
                                 src="{{ asset('backend/dist/assets/images/faces/face8.jpg') }}" alt="Profile image">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                            <div class="dropdown-header text-center">
-                                <img class="img-md rounded-circle"
-                                    src="{{ asset('backend/dist/assets/images/faces/face8.jpg') }}"
-                                    alt="Profile image">
-                                <p class="mb-1 mt-3 fw-semibold">Allen Moreno</p>
-                                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
-                            </div>
-                            <a class="dropdown-item"><i
-                                    class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
-                                Profile <span class="badge badge-pill badge-danger">1</span></a>
-                            <a class="dropdown-item"><i
-                                    class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
-                                Messages</a>
-                            <a class="dropdown-item"><i
-                                    class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i>
-                                Activity</a>
-                            <a class="dropdown-item"><i
-                                    class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
-                                FAQ</a>
+
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -271,7 +254,7 @@
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item nav-category">Master</li>
+                    {{-- <li class="nav-item nav-category">Master</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('user/daftar') }}">
                             <i class="menu-icon mdi mdi-account-circle-outline"></i>
@@ -313,7 +296,7 @@
                             <i class="menu-icon mdi mdi-layers-outline"></i>
                             <span class="menu-title">Penjadwalan Kuliah</span>
                         </a>
-                    </li>
+                    </li> --}}
 
 
                     <li class="nav-item nav-category">Dosen</li>
@@ -324,7 +307,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item nav-category">Mahasiswa</li>
+                    {{-- <li class="nav-item nav-category">Mahasiswa</li> --}}
                 </ul>
             </nav>
             <!-- partial -->

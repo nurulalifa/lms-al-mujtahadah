@@ -1,4 +1,4 @@
-@extends('../backend')
+@extends('../backenddosen')
 @section('content')
     <div class="content-wrapper">
         <div class="row">

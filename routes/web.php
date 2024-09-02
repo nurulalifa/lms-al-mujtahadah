@@ -12,9 +12,9 @@ use App\Http\Controllers\LMS\modul_master\RuanganController as Modul_masterRuang
 use App\Http\Controllers\LMS\modul_master\ProdiController as Modul_masterProdiController;
 
 use App\Http\Controllers\LMS\modul_dosen\Dosen_MatkulController as Modul_Dosen;
-use App\Http\Controllers\LMS\modul_dosen\RPSController as RPRController;
-use App\Http\Controllers\LMS\modul_dosen\RPSController;
-use App\Models\RPS;
+use App\Http\Controllers\LMS\modul_dosen\RPSController as RPSController;
+use App\Http\Controllers\LMS\modul_dosen\Dosen_JadwalController as Dosen_JadwalController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -96,13 +96,19 @@ Route::get('/jadwalkul/mahasiswa/hapus/{id}/{id_mahasiswa}',[Modul_masterJadwalC
 Route::group(['middleware' => ['auth', 'role:dosen']], function() {
 Route::get('/dosen/matkul',[Modul_Dosen::class,'index']);
 Route::get('input/rps/{id}',[Modul_Dosen::class,'daftar_rps'])->name('rps');
-Route::get('rps/form/{id}',[RPRController::class,'form_rps']);
+Route::get('rps/form/{id}',[RPSController::class,'form_rps']);
 Route::post('rps/simpan/',[RPSController::class,'simpan_rps']);
 Route::get('rps/edit/{id}',[RPSController::class,'edit_rps']);
 Route::post('rps/update/{id}',[RPSController::class,'update_rps']);
 Route::get('rps/delete/{id}',[RPSController::class,'delete_rps']);
 
-// Route::get('kelas/daftar');
+Route::get('dosen/jadwal/{id}',[Dosen_JadwalController::class,'index']);
+Route::get('dosen/kelas/{id}',[Dosen_JadwalController::class,'kelas']);
+Route::get('dosen/kelas/tambah/{id}',[Dosen_JadwalController::class,'tambah_materi']);
+Route::post('dosen/kelas/simpan/{id}',[Dosen_JadwalController::class,'simpan_materi']);
+
+Route::get('dosen/kelas/detail/{id}',[Dosen_JadwalController::class,'detail_kelas']);
+
 
 
 
