@@ -9,18 +9,25 @@ use App\Models\Kelas;
 use App\Models\RPS;
 use Laravel\Ui\Presets\React;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class Dosen_JadwalController extends Controller
 {
     public function index($id){
-        $jadwal = Jadwal::findOrFail($id);
-        $rps = RPS::where('id_jadwal',$id)->get();
+        $auth = Auth::id();
+
+        $jadwal = Jadwal::where('id',$id)
+        ->where('id_dosen',$auth)
+        ->first();
+        $rps = RPS::where('id_jadwal',$id)->where('id_dosen',$auth)->get();
         // dd($rps);
         return view('backend.moduldosen.kelas.kelas', compact('jadwal','rps'));
     }
 
     public function kelas($id){
-        $rps = RPS::findOrFail($id);
+        $auth = Auth::id();
+        // dd($id);
+        $rps = RPS::where('id',$id)->where('id_dosen',$auth)->first();
         $kelas = Kelas::where('id_rps',$id)->get();
 
         return view('backend.moduldosen.kelas.aktifitas',compact('rps','kelas'));
