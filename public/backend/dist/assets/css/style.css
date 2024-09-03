@@ -27109,7 +27109,7 @@ dl li {
   color: #222222;
 }
 .table.select-table td {
-  font-family: Manrope;
+  font-family: "Manrope", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;

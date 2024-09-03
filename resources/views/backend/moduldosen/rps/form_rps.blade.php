@@ -33,12 +33,12 @@
                             </div>
                             <div class="form-group">
                                 <label>Waktu</label>
-                                <input type="text" name="img" class="form-control">
+                                <input type="text" name="waktu" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputCity1">Pengalaman</label>
                                 <div>
-                                    <textarea class="form-control-sm" name="waktu" cols="142" rows="5"></textarea>
+                                    <textarea class="form-control-sm" name="pengalaman" cols="142" rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">

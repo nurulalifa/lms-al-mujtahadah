@@ -12,8 +12,10 @@ class RPS extends Model
     protected $fillable=[
             'id_jadwal',
             'id_matkul',
+            'id_dosen',
             'pertemuan',
             'kemampuan',
+            'pengalaman',
             'bahan',
             'metode',
             'waktu',
@@ -21,4 +23,5 @@ class RPS extends Model
             'bobot',
             'jenis_ujian',
     ];
+    
 }

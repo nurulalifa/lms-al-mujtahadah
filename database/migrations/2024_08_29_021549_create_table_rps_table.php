@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_jadwal');
             $table->string('id_matkul');
+            $table->string('id_dosen');
             $table->string('pertemuan');
             $table->string('kemampuan');
             $table->string('bahan');

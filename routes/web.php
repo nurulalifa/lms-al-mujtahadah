@@ -100,7 +100,7 @@ Route::get('rps/form/{id}',[RPSController::class,'form_rps']);
 Route::post('rps/simpan/',[RPSController::class,'simpan_rps']);
 Route::get('rps/edit/{id}',[RPSController::class,'edit_rps']);
 Route::post('rps/update/{id}',[RPSController::class,'update_rps']);
-Route::get('rps/delete/{id}',[RPSController::class,'delete_rps']);
+// Route::get('rps/delete/{id}',[RPSController::class,'delete_rps']);
 
 Route::get('dosen/jadwal/{id}',[Dosen_JadwalController::class,'index']);
 Route::get('dosen/kelas/{id}',[Dosen_JadwalController::class,'kelas']);
@@ -108,7 +108,10 @@ Route::get('dosen/kelas/tambah/{id}',[Dosen_JadwalController::class,'tambah_mate
 Route::post('dosen/kelas/simpan/{id}',[Dosen_JadwalController::class,'simpan_materi']);
 
 Route::get('dosen/kelas/detail/{id}',[Dosen_JadwalController::class,'detail_kelas']);
+Route::post('dosen/kelas/kirim/{id}',[Dosen_JadwalController::class,'kirim_pesan']);
 
+Route::get('dosen/absen/{id}',[Dosen_JadwalController::class, 'form_absen']);
+Route::post('dosen/absen/simpan/{id}',[Dosen_JadwalController::class, 'simpan_absen']);
 
 
 

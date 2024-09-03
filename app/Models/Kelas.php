@@ -9,6 +9,6 @@ class Kelas extends Model
 {
     // use HasFactory;
     protected $table = "table_kelas";
-    protected $fillable =['id_jadwal','id_matkul','id_rps','jenis_perkuliahan','judul','deskripsi','bahan','tanggal','waktu'];
+    protected $fillable =['id_jadwal','id_dosen','id_matkul','id_rps','jenis_perkuliahan','judul','deskripsi','bahan','tanggal','waktu'];
 
 }

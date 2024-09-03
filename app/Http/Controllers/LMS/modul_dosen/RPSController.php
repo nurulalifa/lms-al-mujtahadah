@@ -4,6 +4,7 @@ namespace App\Http\Controllers\LMS\modul_dosen;
 use App\Http\Controllers\Controller;
 use App\Models\Jadwal;
 use App\Models\RPS;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class RPSController extends Controller
@@ -16,11 +17,13 @@ class RPSController extends Controller
     }
     public function simpan_rps(){
         $id = Request()->id;
+        $auth = Auth::id();
         $jadwal=Jadwal::findOrFail($id);
         // dd($jadwal->id, $jadwal->id_matkul);
         RPS::create([
             'id_jadwal'=>$jadwal->id,
             'id_matkul'=>$jadwal->id_matkul,
+            'id_dosen'=>$auth,
             'pertemuan'=>Request()->pertemuan,
             'kemampuan'=>Request()->kemampuan,
             'pengalaman'=>Request()->pengalaman,

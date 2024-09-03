@@ -4,8 +4,11 @@ namespace App\Http\Controllers\LMS\modul_dosen;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Absen;
+use App\Models\Aktifitas;
 use App\Models\Jadwal;
 use App\Models\Kelas;
+use App\Models\Matkul;
 use App\Models\RPS;
 use Laravel\Ui\Presets\React;
 use Illuminate\Support\Str;
@@ -20,8 +23,10 @@ class Dosen_JadwalController extends Controller
         ->where('id_dosen',$auth)
         ->first();
         $rps = RPS::where('id_jadwal',$id)->where('id_dosen',$auth)->get();
-        // dd($rps);
-        return view('backend.moduldosen.kelas.kelas', compact('jadwal','rps'));
+        $absen = Absen::where('id_jadwal',$id)->get();
+
+        // dd($absen->id_rps);
+        return view('backend.moduldosen.kelas.kelas', compact('jadwal','rps','absen'));
     }
 
     public function kelas($id){
@@ -36,6 +41,7 @@ class Dosen_JadwalController extends Controller
         return view('backend.moduldosen.kelas.tambah_materi',compact('id'));
     }
     public function simpan_materi($id){
+        $auth = Auth::id();
         $rps = RPS::findOrFail($id);
         $bahan = Request()->bahan;
         if ($bahan) {
@@ -48,6 +54,7 @@ class Dosen_JadwalController extends Controller
             'id_jadwal'=>$rps->id_jadwal,
             'id_matkul'=>$rps->id_matkul,
             'id_rps'=>$id,
+            'id_dosen'=>$auth,
             'judul'=>Request()->judul,
             'deskripsi'=>Request()->deskripsi,
             'jenis_perkuliahan'=>Request()->kategori,
@@ -58,6 +65,57 @@ class Dosen_JadwalController extends Controller
         return redirect('dosen/kelas/'.$id);
     }
     public function detail_kelas($id){
-        return view('backend.moduldosen.kelas.detail_kelas');
+        // $rps = RPS::findOrFail($id);
+        $kelas = Kelas::findOrFail($id);
+        $aktifitas = Aktifitas::where('id_kelas',$id)->get();
+        return view('backend.moduldosen.kelas.detail_kelas', compact('kelas','aktifitas'));
     }
+    public function kirim_pesan($id){
+        $auth = Auth::id();
+        $kelas = Kelas::findOrFail($id);
+        Aktifitas::create([
+            'id_jadwal'=>$kelas->id_jadwal,
+            'id_matkul'=>$kelas->id_matkul,
+            'id_rps'=>$kelas->id,
+            'id_pengguna'=>$auth,
+            'id_kelas'=>$kelas->id,
+            'pesan'=>Request()->pesan
+        ]);
+        return redirect()->back();
+    }
+    public function form_absen($id){
+        $absen = Absen::where('id_rps',$id)->first();
+        return view('backend.moduldosen.kelas.absen',compact('id','absen'));
+    }
+    public function simpan_absen($id)
+    {
+        $auth = Auth::id();
+        $rps = RPS::findOrFail($id);
+        $absen = Absen::where('id_rps', $id);
+
+        if ($absen->exists()) {
+            // Jika ada data absen yang sudah ada, perbarui entri-entri tersebut
+            $absen->update([
+                'tanggal_m' => Request()->tanggal_m,
+                'tanggal_s' => Request()->tanggal_s,
+                'jam_m' => Request()->jam_m,
+                'jam_s' => Request()->jam_s
+            ]);
+        } else {
+            // Jika tidak ada data absen, buat entri baru
+            Absen::create([
+                'id_matkul' => $rps->id_matkul,
+                'id_jadwal' => $rps->id_jadwal,
+                'id_rps' => $rps->id,
+                'id_dosen' => $auth,
+                'tanggal_m' => Request()->tanggal_m,
+                'tanggal_s' => Request()->tanggal_s,
+                'jam_m' => Request()->jam_m,
+                'jam_s' => Request()->jam_s
+            ]);
+        }
+
+        return redirect('dosen/jadwal/'.$rps->id_jadwal);
+    }
+
 }
