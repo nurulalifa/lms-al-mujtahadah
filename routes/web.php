@@ -15,6 +15,8 @@ use App\Http\Controllers\LMS\modul_dosen\Dosen_MatkulController as Modul_Dosen;
 use App\Http\Controllers\LMS\modul_dosen\RPSController as RPSController;
 use App\Http\Controllers\LMS\modul_dosen\Dosen_JadwalController as Dosen_JadwalController;
 
+use App\Http\Controllers\LMS\modul_mahasiswa\MahasiswaController as Mahasiswa_Controller;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -22,8 +24,8 @@ use App\Http\Controllers\LMS\modul_dosen\Dosen_JadwalController as Dosen_JadwalC
 
 //frontend
 Route::get('/',[FrontendController::class, 'index']);
-Route::get('/login',[FrontendController::class, 'formlogin']);
-Route::get('/register',[FrontendController::class,'formregister']);
+// Route::get('/login',[FrontendController::class, 'formlogin']);
+// Route::get('/register',[FrontendController::class,'formregister']);
 
 
 
@@ -118,6 +120,8 @@ Route::post('dosen/absen/simpan/{id}',[Dosen_JadwalController::class, 'simpan_ab
 });
 
 Route::group(['middleware' => ['auth', 'role:mahasiswa']], function() {
+Route::get('mahasiswa/dashboard',[Mahasiswa_Controller::class, 'index']);
+
 
 });
 

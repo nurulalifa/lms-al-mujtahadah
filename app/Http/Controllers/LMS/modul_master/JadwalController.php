@@ -31,11 +31,11 @@ class JadwalController extends Controller
             'id_dosen'=>Request()->dosen,
             'hari'=>Request()->hari
         ]);
-        $data = $jadwal->id;
-        Jadwal_Mahasiswa::create([
-            'id_jadwal'=>$data,
-            'id_mahasiswa'=>0
-        ]);
+        // $data = $jadwal->id;
+        // Jadwal_Mahasiswa::create([
+        //     'id_jadwal'=>$data,
+        //     'id_mahasiswa'=>0
+        // ]);
         return redirect('/jadwalkul/daftar');
     }
     public function edit_jadwal($id){

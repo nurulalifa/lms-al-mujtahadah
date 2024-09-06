@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Absen;
 use App\Models\Aktifitas;
 use App\Models\Jadwal;
+use App\Models\Jadwal_Mahasiswa;
 use App\Models\Kelas;
 use App\Models\Matkul;
 use App\Models\RPS;
@@ -85,7 +86,9 @@ class Dosen_JadwalController extends Controller
     }
     public function form_absen($id){
         $absen = Absen::where('id_rps',$id)->first();
-        return view('backend.moduldosen.kelas.absen',compact('id','absen'));
+        $rps = RPS::findOrFail($id);
+        $jadwal_mahasiswa=Jadwal_Mahasiswa::where('id_jadwal',$rps->id_jadwal)->get();
+        return view('backend.moduldosen.kelas.absen',compact('id','absen','jadwal_mahasiswa'));
     }
     public function simpan_absen($id)
     {
