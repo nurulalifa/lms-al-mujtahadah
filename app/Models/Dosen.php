@@ -9,6 +9,6 @@ class Dosen extends Model
 {
     // use HasFactory;
     protected $table ='table_dosen';
-    protected $fillable = ['nama','kategori','univ','tgl','foto', 'email'];
+    protected $fillable = ['nama','kategori','univ','nidn','foto', 'email'];
 
 }

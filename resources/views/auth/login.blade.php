@@ -40,16 +40,16 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo">
-                                <img src="../../assets/images/logo.svg" alt="logo">
+                                <img src="{{asset('backend/dist/assets/images/logo.svg')}}" alt="logo">
                             </div>
-                            <h4>Hello! let's get started</h4>
+                            <h4>SELAMAT DATANG</h4>
                             <h6 class="fw-light">Sign in to continue.</h6>
                             <form class="pt-3" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-lg"
                                         id="exampleInputEmail1"@error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        value="{{ old('email') }}" placeholder="Email" required autocomplete="email" autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -74,20 +74,20 @@
                                         {{ __('Login') }}
                                     </button>
                                 </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
+                                {{-- <div class="my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check">
                                         <label class="form-check-label text-muted">
                                             <input type="checkbox" class="form-check-input"> Keep me signed in </label>
                                     </div>
                                     <a href="#" class="auth-link text-black">Forgot password?</a>
-                                </div>
-                                <div class="mb-2 d-grid gap-2">
+                                </div> --}}
+                                {{-- <div class="mb-2 d-grid gap-2">
                                     <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                                         <i class="ti-facebook me-2"></i>Connect using facebook </button>
-                                </div>
-                                <div class="text-center mt-4 fw-light"> Don't have an account? <a href="register.html"
+                                </div> --}}
+                                {{-- <div class="text-center mt-4 fw-light"> Don't have an account? <a href="register.html"
                                         class="text-primary">Create</a>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
                     </div>

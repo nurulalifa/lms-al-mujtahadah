@@ -5,6 +5,10 @@ namespace App\Http\Controllers\LMS\modul_master;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class MahasiswaController extends Controller
 {
@@ -26,6 +30,12 @@ class MahasiswaController extends Controller
             'asal_sekolah'=>$request->asal_sekolah,
             'email'=>$request->email,
             'tahun_masuk'=>$request->tahun_masuk
+        ]);
+        User::create([
+            'name' =>Request()->nama,
+            'email' => Request()->email,
+            'password' => Hash::make('12345678'),
+            'role' => 'mahasiswa', // Menyimpan peran pengguna
         ]);
         return redirect('mahasiswa/daftar');
     }

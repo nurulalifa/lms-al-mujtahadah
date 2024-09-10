@@ -1,4 +1,4 @@
-@extends('../backenddosen')
+@extends('../backendmahasiswa')
 @section('content')
     <div class="content-wrapper">
         <div class="row">
@@ -13,11 +13,11 @@
                                 <h4 class="card-title card-title-dash"></h4>
                                 <div class="add-items d-flex mb-0">
                                     <!-- <input type="text" class="form-control todo-list-input" placeholder="What do you need to do today?"> -->
-                                  <a href="{{url('dosen/kelas/tambah/'.$rps->id)}}">
+                                  {{-- <a href="{{url('dosen/kelas/tambah/'.$rps->id)}}">
                                     <button class="add btn btn-icons btn-rounded btn-primary todo-list-add text-white me-0 pl-12p">
                                         <i class="mdi mdi-plus"></i>
                                     </button>
-                                </a>
+                                </a> --}}
                                 </div>
                             </div>
                             <div class="list-wrapper">
@@ -27,7 +27,7 @@
                                     <li class="d-block">
                                         <div>
                                             <label class="form-check-label">
-                                                <h6><a href="{{url('dosen/kelas/detail/'.$k->id)}}"> [Diskusi] {{$k->judul}} </a></h6>
+                                                <h6><a href="{{url('mahasiswa/kelas/aktifitas/'.$k->id)}}"> [Diskusi] {{$k->judul}} </a></h6>
                                                     <p>{{$k->deskripsi}}</p>
                                             </label>
                                             @if($k->bahan)
@@ -48,7 +48,7 @@
                                     <li class="d-block">
                                         <div>
                                             <label class="form-check-label">
-                                                <h6><a href="{{url('dosen/kelas/detail/'.$k->id)}}"> [Tugas] {{$k->judul}} </a> </h6>
+                                                <h6><a href="{{url('mahasiswa/kelas/aktifitas/'.$k->id)}}"> [Tugas] {{$k->judul}} </a> </h6>
                                                 <p>{{$k->deskripsi}}</p>
                                             </label>
 
@@ -70,7 +70,7 @@
                                     <li class="d-block">
                                         <div>
                                             <label class="form-check-label">
-                                                <h6> <a href="{{url('dosen/kelas/detail/'.$k->id)}}"> [Ujian] {{$k->judul}} </a> </h6>
+                                                <h6> <a href="{{url('mahasiswa/kelas/aktifitas/'.$k->id)}}"> [Ujian] {{$k->judul}} </a> </h6>
                                                     <p>{{$k->deskripsi}}</p>
                                             </label>
 

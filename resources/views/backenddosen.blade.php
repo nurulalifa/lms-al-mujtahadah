@@ -171,8 +171,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator" id="countDropdown" href="#"
-                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">
                             <i class="icon-mail icon-lg"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
@@ -220,18 +220,18 @@
                             <img class="img-xs rounded-circle"
                                 src="{{ asset('backend/dist/assets/images/faces/face8.jpg') }}" alt="Profile image">
                         </a>
+
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-
-
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            <a class="dropdown-item" href="{{url('reset')}}"> Reset Password </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
                             {{-- <a class="dropdown-item"><i
                                     class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a> --}}
                         </div>

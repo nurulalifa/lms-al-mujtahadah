@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 use Illuminate\Support\Str;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class DosenController extends Controller
 {
@@ -23,17 +25,30 @@ class DosenController extends Controller
     }
     public function simpan_dosen(Request $request){
         $foto = $request->foto;
-        $new_foto = Str::random(16).'.'.$foto->extension();
-        $foto->move('uploads/dosen/', $new_foto);
+        if ($foto) {
+            $new_foto = Str::random(16).'.'.$foto->extension();
+            $foto->move('uploads/dosen/', $new_foto);
+        } else {
+           $new_foto = '';
+        }
         Dosen::create([
             'nama' => $request->nama,
-            'tgl'=>$request->tgl,
+            'npm'=>$request->npm,
             // 'foto'=>$request->foto,
             'foto' => $new_foto,
             'kategori'=>$request->kategori,
             'univ'=>$request->univ,
             'email'=>$request->email
         ]);
+
+        User::create([
+            'name' =>Request()->nama,
+            'email' => Request()->email,
+            'password' => Hash::make('12345678'),
+            'role' => 'dosen', // Menyimpan peran pengguna
+        ]);
+
+
         return redirect('dosen/daftar')->with('pesan','Berhasil Disimpan');
     }
     public function detail_dosen($id){

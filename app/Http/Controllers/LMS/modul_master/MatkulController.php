@@ -15,9 +15,10 @@ class MatkulController extends Controller
         return view('backend.modul_master.matakuliah.daftar', compact('data'));
     }
     public function tambah_matkul(){
-        $dosen = Dosen::all();
+
         $ruangan = Ruangan::all();
-        return view('backend.modul_master.matakuliah.tambah', compact('dosen','ruangan'));
+        // dd($ruangan);
+        return view('backend.modul_master.matakuliah.tambah', compact('ruangan'));
     }
     public function simpan_matkul(Request $request){
         Matkul::create([

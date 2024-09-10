@@ -5,9 +5,9 @@
         <div class="col-md-6 col-lg-4 mb-3">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">{{$j->id_matkul}}</h5>
+                    <h5 class="card-title">{{$j->nama}}</h5>
 
-                    <img class="img-fluid d-flex mx-auto my-4" src="../assets/img/elements/4.jpg" alt="Card image cap" />
+                    <img class="img-fluid d-flex mx-auto my-4" src="{{asset('backend/dist/assets/images/belajar.png')}}" alt="Card image cap" />
                     <h6 class="card-subtitle text-muted">{{$j->hari}}</h6>
                     <p class="card-text">{{$j->jam_m}} - {{$j->jam_k}}</p>
                     <a href="{{url('input/rps/'.$j->id)}}" class="card-link">Input RPS</a>

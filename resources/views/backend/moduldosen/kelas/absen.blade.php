@@ -56,34 +56,35 @@
         </div>
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
-              <div class="card card-rounded">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                          <h4 class="card-title card-title-dash">Kehadiran</h4>
-                        </div>
-                      </div>
-                      <div class="mt-3">
-                        <div class="wrapper d-flex align-items-center justify-content-between py-2 border-bottom">
-                          <div class="d-flex">
-                            @foreach ( $jadwal_mahasiswa as $jadwal )
-
-                            <div class="wrapper ms-3">
-                              <p class="ms-1 mb-1 fw-bold">{{$jadwal->id_mahasiswa}}</p>
-                              <small class="text-muted mb-0">Nim</small>
+                <div class="card card-rounded">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <h4 class="card-title card-title-dash">Kehadiran</h4>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <div
+                                        class="wrapper d-flex align-items-center justify-content-between py-2 border-bottom">
+                                        <div class="d-flex">
+                                            @foreach ($absen_m as $absen_m)
+                                                <div class="wrapper ms-3">
+                                                    <p class="ms-1 mb-1 fw-bold">{{ $absen_m->nama }}</p>
+                                                    <p class="ms-1 mb-1 fw-bold">{{ $absen_m->nimm }}</p>
+                                                </div>
+                                        </div>
+                                        <div class="text-muted text-small">{{ $absen_m->absen }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                          <div class="text-muted text-small">Status Absen</div>
-                          @endforeach
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
     </div>
+
 @endsection

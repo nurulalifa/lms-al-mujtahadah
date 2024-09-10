@@ -16,8 +16,7 @@ use App\Http\Controllers\LMS\modul_dosen\RPSController as RPSController;
 use App\Http\Controllers\LMS\modul_dosen\Dosen_JadwalController as Dosen_JadwalController;
 
 use App\Http\Controllers\LMS\modul_mahasiswa\MahasiswaController as Mahasiswa_Controller;
-
-
+use App\Http\Controllers\Auth\ChangePasswordController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -32,6 +31,9 @@ Route::get('/',[FrontendController::class, 'index']);
 
 Auth::routes();
 Route::get('/dashboard',[BackendController::class,'index']);
+// Route::get('/reset',[BackendController::class,'reset']);
+Route::get('reset', [ChangePasswordController::class, 'showChangePasswordForm']);
+Route::post('password/change', [ChangePasswordController::class, 'updatePassword'])->name('password.change');
 Route::group(['middleware' => ['auth', 'role:admin']], function() {
 //user
 Route::get('/user/daftar',[BackendController::class,'daftar_user']);
@@ -111,6 +113,7 @@ Route::post('dosen/kelas/simpan/{id}',[Dosen_JadwalController::class,'simpan_mat
 
 Route::get('dosen/kelas/detail/{id}',[Dosen_JadwalController::class,'detail_kelas']);
 Route::post('dosen/kelas/kirim/{id}',[Dosen_JadwalController::class,'kirim_pesan']);
+Route::post('dosen/kelas/nilai/{id}',[Dosen_JadwalController::class,'input_nilai']);
 
 Route::get('dosen/absen/{id}',[Dosen_JadwalController::class, 'form_absen']);
 Route::post('dosen/absen/simpan/{id}',[Dosen_JadwalController::class, 'simpan_absen']);
@@ -121,7 +124,12 @@ Route::post('dosen/absen/simpan/{id}',[Dosen_JadwalController::class, 'simpan_ab
 
 Route::group(['middleware' => ['auth', 'role:mahasiswa']], function() {
 Route::get('mahasiswa/dashboard',[Mahasiswa_Controller::class, 'index']);
+Route::get('mahasiswa/kelas/{id}',[Mahasiswa_Controller::class, 'kelas']);
+Route::get('mahasiswa/kelas/detail/{id}',[Mahasiswa_Controller::class,'detail_kelas']);
+Route::get('mahasiswa/absen/{id}',[Mahasiswa_Controller::class, 'absen']);
+Route::get('mahasiswa/kelas/aktifitas/{id}',[Mahasiswa_Controller::class,'aktifitas']);
+Route::post('mahasiswa/kelas/kirim/{id}',[Mahasiswa_Controller::class,'kirim_pesan']);
 
-
+Route::post('mahasiswa/kelas/upload/{id}',[Mahasiswa_Controller::class,'upload_tugas']);
 });
 

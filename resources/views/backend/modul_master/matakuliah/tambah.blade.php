@@ -15,16 +15,6 @@
                         <input type="text" name="kode" class="form-control" id="exampleInputName1" placeholder="Kode Matakuliah">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1" class="form-label">Dosen Pengampu</label>
-                        <select name="id_dosen" class="form-select" id="exampleFormControlSelect1"
-                            aria-label="Default select example">
-                            <option>Pilih Dosen</option>
-                            @foreach ($dosen  as $d )
-                            <option value="{{$d->id}}">{{$d->nama}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label for="exampleInputName1">Bobot Matakuliah</label>
                         <input type="text" name="bobot" class="form-control" id="exampleInputName1" placeholder="Bobot Matakuliah">
                     </div>
@@ -34,7 +24,7 @@
                             aria-label="Default select example">
                             <option>Pilih Ruangan</option>
                             @foreach ($ruangan  as $r )
-                            <option value="{{$r->id}}">{{$d->nama}}</option>
+                            <option value="{{$r->id}}">{{$r->nama}}</option>
                             @endforeach
                         </select>
                     </div>

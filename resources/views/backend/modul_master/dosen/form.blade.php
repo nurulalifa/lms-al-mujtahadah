@@ -14,9 +14,9 @@
                                 name="nama" />
                         </div>
                         <div class="form-group">
-                            <label  for="exampleInputName1" class="form-label">Tanggal Kelulusan</label>
+                            <label  for="exampleInputName1" class="form-label">NIDN</label>
                             <div>
-                                <input name="tgl"class="form-control" type="date" id="html5-date-input" />
+                                <input name="nidn"class="form-control"placeholder ="NIDN" type="text" id="html5-date-input" />
                             </div>
                         </div>
                         <div class="form-group">

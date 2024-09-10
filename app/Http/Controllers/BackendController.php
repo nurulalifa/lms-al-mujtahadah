@@ -19,6 +19,9 @@ class BackendController extends Controller
     public function daftar_user(){
         return view('backend.modul_master.user.daftar');
     }
+    public function reset(){
+        return view('auth.passwords.reset');
+    }
     // public function tambah_user(){
     //     return view('backend.user.tambah');
     // }

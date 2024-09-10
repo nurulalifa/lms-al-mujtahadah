@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">{{$jadwal->id_matkul}}</h4>
+        <h4 class="card-title">{{$jadwal->nama}}</h4>
         <p class="card-description"> {{$jadwal->hari}}, {{$jadwal->jam_m}} - {{$jadwal->jam_k}}
         </p>
         <a href="{{ url('rps/form/'.$jadwal->id) }}"> <button type="button"

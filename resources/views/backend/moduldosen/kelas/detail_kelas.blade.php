@@ -70,24 +70,36 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-
+                                        @foreach ( $tugas as $t )
                                         <td>
                                             <div class="d-flex ">
                                                 <div>
-                                                    <h6>Brandon Washington</h6>
-                                                    <p>NIM</p>
+                                                    <h6>{{$t->nama}}</h6>
+                                                    <p>{{$t->nim}}</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <p>TUGAS</p>
+                                            <p>
+                                                @if ($t->file)
+                                                <a href="{{asset('uploads/tugas/'.$t->file)}}" target="_blank"> Lihat Tugas </a>
+                                                @elseif ($t->link)
+                                                <a href="{{$t->link}}" target="_blank"> Lihat Tugas </a>
+                                                @else
+                                                Belum Mengumpulkan Tugas
+                                                @endif
+                                            </p>
                                         </td>
                                         <td>
                                             <form class="forms-sample material-form" method="POST"
-                                                action="{{ url('dosen/kelas/kirim/' . $kelas->id) }}">
+                                                action="{{ url('dosen/kelas/nilai/' . $t->id) }}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <input type="text" required="required">
+                                                    <input type="text" name="nilai"
+                                                    @if($t->nilai)
+                                                    value={{$t->nilai}}
+                                                    @endif
+                                                    required="required">
                                                 </div>
                                         </td>
                                         <td>
@@ -97,6 +109,7 @@
                                             </div>
                                             </form>
                                         </td>
+                                        @endforeach
                                     </tr>
                                 </tbody>
                             </table>

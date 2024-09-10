@@ -232,6 +232,8 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    <a class="dropdown-item" href="{{url('reset')}}"> Reset Password </a>
+
                             {{-- <a class="dropdown-item"><i
                                     class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a> --}}
                         </div>
@@ -299,9 +301,9 @@
                     </li> --}}
 
 
-                    <li class="nav-item nav-category">Dosen</li>
+                    <li class="nav-item nav-category">Mahasiswa</li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('dosen/matkul') }}">
+                        <a class="nav-link" href="{{ url('mahasiswa/dashboard') }}">
                             <i class="menu-icon mdi mdi-account-circle-outline"></i>
                             <span class="menu-title">Perkuliahan</span>
                         </a>
