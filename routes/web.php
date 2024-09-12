@@ -30,10 +30,13 @@ Route::get('/',[FrontendController::class, 'index']);
 
 
 Auth::routes();
-Route::get('/dashboard',[BackendController::class,'index']);
+Route::get('/dashboard',[BackendController::class,'index'])->name('dashboard');
 // Route::get('/reset',[BackendController::class,'reset']);
 Route::get('reset', [ChangePasswordController::class, 'showChangePasswordForm']);
 Route::post('password/change', [ChangePasswordController::class, 'updatePassword'])->name('password.change');
+Route::post('password/change/dosen', [ChangePasswordController::class, 'updatePassword_dosen'])->name('password.change.dosen');
+Route::post('password/change/mahasiswa', [ChangePasswordController::class, 'updatePassword_mahasiswa'])->name('password.change.mahasiswa');
+
 Route::group(['middleware' => ['auth', 'role:admin']], function() {
 //user
 Route::get('/user/daftar',[BackendController::class,'daftar_user']);
@@ -98,7 +101,7 @@ Route::get('/jadwalkul/mahasiswa/hapus/{id}/{id_mahasiswa}',[Modul_masterJadwalC
 //Modul Dosen
 //RPS
 Route::group(['middleware' => ['auth', 'role:dosen']], function() {
-Route::get('/dosen/matkul',[Modul_Dosen::class,'index']);
+Route::get('/dosen/matkul',[Modul_Dosen::class,'index'])->name('dosen.matkul');
 Route::get('input/rps/{id}',[Modul_Dosen::class,'daftar_rps'])->name('rps');
 Route::get('rps/form/{id}',[RPSController::class,'form_rps']);
 Route::post('rps/simpan/',[RPSController::class,'simpan_rps']);
@@ -123,7 +126,7 @@ Route::post('dosen/absen/simpan/{id}',[Dosen_JadwalController::class, 'simpan_ab
 });
 
 Route::group(['middleware' => ['auth', 'role:mahasiswa']], function() {
-Route::get('mahasiswa/dashboard',[Mahasiswa_Controller::class, 'index']);
+Route::get('mahasiswa/dashboard',[Mahasiswa_Controller::class, 'index'])->name('mahasiswa.dashboard');
 Route::get('mahasiswa/kelas/{id}',[Mahasiswa_Controller::class, 'kelas']);
 Route::get('mahasiswa/kelas/detail/{id}',[Mahasiswa_Controller::class,'detail_kelas']);
 Route::get('mahasiswa/absen/{id}',[Mahasiswa_Controller::class, 'absen']);
@@ -131,5 +134,10 @@ Route::get('mahasiswa/kelas/aktifitas/{id}',[Mahasiswa_Controller::class,'aktifi
 Route::post('mahasiswa/kelas/kirim/{id}',[Mahasiswa_Controller::class,'kirim_pesan']);
 
 Route::post('mahasiswa/kelas/upload/{id}',[Mahasiswa_Controller::class,'upload_tugas']);
+
+Route::get('mahasiswa/pilih/semester',[Mahasiswa_Controller::class, 'pilih_smt']);
+Route::get('mahasiswa/khs',[Mahasiswa_Controller::class, 'calculateFinalScore']);
+// Route::get('mahasiswa/KHS',[Mahasiswa_Controller::class, 'khs']);
+
 });
 

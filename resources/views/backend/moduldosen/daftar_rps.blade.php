@@ -5,7 +5,7 @@
         <h4 class="card-title">{{$jadwal->nama}}</h4>
         <p class="card-description"> {{$jadwal->hari}}, {{$jadwal->jam_m}} - {{$jadwal->jam_k}}
         </p>
-        <a href="{{ url('rps/form/'.$jadwal->id) }}"> <button type="button"
+        <a href="{{ url('rps/form/'.$id) }}"> <button type="button"
             class="btn btn-primary btn-rounded btn-fw">Input RPS</button></a>
 
         <div class="table-responsive">

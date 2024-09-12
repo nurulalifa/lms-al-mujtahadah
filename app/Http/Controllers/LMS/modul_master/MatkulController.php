@@ -24,6 +24,7 @@ class MatkulController extends Controller
         Matkul::create([
             'nama'=>$request->nama,
             'kode'=>$request->kode,
+            'id_ruangan'=>$request->id_ruangan,
             'bobot'=>$request->bobot
         ]);
         return redirect('/matkul/daftar');

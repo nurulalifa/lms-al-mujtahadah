@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1" class="form-label">Ruangan </label>
-                        <select name="id_dosen" class="form-select" id="exampleFormControlSelect1"
+                        <select name="id_ruangan" class="form-select" id="exampleFormControlSelect1"
                             aria-label="Default select example">
                             <option>Pilih Ruangan</option>
                             @foreach ($ruangan  as $r )

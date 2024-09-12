@@ -30,13 +30,13 @@ class Dosen_MatkulController extends Controller
         ->join('table_matkul', 'table_jadwal.id_matkul', '=', 'table_matkul.id')
         ->select('table_matkul.nama', 'table_jadwal.*')
         ->first();
-        
+
         $rps = RPS::where('id_jadwal', $id)
-        ->where('id_matkul', $jadwal->id_matkul)
+        // ->where('id_matkul', $jadwal->id_matkul)
         ->orderBy('pertemuan', 'asc')
         ->get();
 
         // dd($rps,$id, $jadwal->id_matkul);
-        return view('backend.moduldosen.daftar_rps',compact('jadwal','rps'));
+        return view('backend.moduldosen.daftar_rps',compact('jadwal','rps','id'));
     }
 }
