@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
 use App\Models\Matkul;
+use App\Models\Prodi;
 use App\Models\Ruangan;
 
 class MatkulController extends Controller
@@ -17,15 +18,19 @@ class MatkulController extends Controller
     public function tambah_matkul(){
 
         $ruangan = Ruangan::all();
+        $prodi = Prodi::all();
         // dd($ruangan);
-        return view('backend.modul_master.matakuliah.tambah', compact('ruangan'));
+        return view('backend.modul_master.matakuliah.tambah', compact('ruangan','prodi'));
     }
     public function simpan_matkul(Request $request){
         Matkul::create([
             'nama'=>$request->nama,
             'kode'=>$request->kode,
             'id_ruangan'=>$request->id_ruangan,
-            'bobot'=>$request->bobot
+            'bobot'=>$request->bobot,
+            'semester'=>$request->semester,
+            'tahun'=>$request->tahun,
+            'prodi'=>$request->prodi
         ]);
         return redirect('/matkul/daftar');
     }

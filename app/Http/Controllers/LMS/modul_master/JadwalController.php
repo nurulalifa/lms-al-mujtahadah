@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Redis;
 class JadwalController extends Controller
 {
     public function daftar_jadwalkuliah(){
-        $data = Jadwal::all();
+        $data = Jadwal::join('table_matkul', 'table_jadwal.id_matkul', '=', 'table_matkul.id')
+        ->join('table_dosen','table_jadwal.id_dosen','=','table_dosen.id')
+        ->select('table_matkul.nama', 'table_jadwal.*','table_dosen.nama as namad')
+        ->get();
         return view('backend.modul_master.jadwalkuliah.daftar',compact('data'));
     }
     public function tambah_jadwalkuliah(){

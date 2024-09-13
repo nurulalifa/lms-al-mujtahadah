@@ -87,11 +87,16 @@ class Dosen_JadwalController extends Controller
     {
         // $rps = RPS::findOrFail($id);
         $kelas = Kelas::findOrFail($id);
-        $aktifitas = Aktifitas::where('id_kelas', $id)->get();
+        $aktifitas = Aktifitas::where('id_kelas', $id)
+            ->leftJoin('table_mahasiswa', 'table_aktifitas.id_pengguna', '=', 'table_mahasiswa.nim')
+            ->leftJoin('table_dosen', 'table_aktifitas.id_pengguna', '=', 'table_dosen.nidn')
+            ->select('table_aktifitas.*', 'table_mahasiswa.nama as nama_m', 'table_dosen.nama as nama_d')
+            ->get();
+
         // $tugas = Tugas::where('id_kelas', $id)->get();
         $tugas = DB::table('table_tugas')
             ->join('table_mahasiswa', 'table_tugas.id_mahasiswa', '=', 'table_mahasiswa.id')
-            ->select('table_mahasiswa.*','table_tugas.*')
+            ->select('table_mahasiswa.*', 'table_tugas.*')
             ->where('table_tugas.id_kelas', $id)
             ->get();
 
@@ -107,7 +112,7 @@ class Dosen_JadwalController extends Controller
             'id_jadwal' => $kelas->id_jadwal,
             'id_matkul' => $kelas->id_matkul,
             'id_rps' => $kelas->id,
-            'id_pengguna' => $user->id,
+            'id_pengguna' => $user->nidn,
             'id_kelas' => $kelas->id,
             'pesan' => Request()->pesan
         ]);

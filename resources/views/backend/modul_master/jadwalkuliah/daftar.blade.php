@@ -24,10 +24,10 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $d->hari }}</td>
-                                    <td>{{ $d->id_matkul }}</td>
+                                    <td>{{ $d->nama }}</td>
                                     <td> {{ $d->jam_m }} </td>
                                     <td> {{ $d->jam_k }} </td>
-                                    <td> {{ $d->id_dosen }}</td>
+                                    <td> {{ $d->namad }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-inverse-info btn-fw"

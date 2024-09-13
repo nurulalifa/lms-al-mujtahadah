@@ -27,6 +27,11 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
+        $tahunn = DB::table('table_matkul')
+            ->select('tahun')
+            ->distinct()
+            ->get();
+
         $email = Auth::user()->email;
         $id_mahasiswa = Mahasiswa::where('email', $email)->first();
 
@@ -46,7 +51,36 @@ class MahasiswaController extends Controller
             )
             ->where('table_jadwal_mahasiswa.id_mahasiswa', $id_mahasiswa->id)
             ->get();
-        return view('backend.modul_mahasiswa.dashboard', compact('mahasiswa'));
+        return view('backend.modul_mahasiswa.dashboard', compact('mahasiswa', 'tahunn'));
+    }
+    public function index2($tahun)
+    {
+        $tahunn = DB::table('table_matkul')
+            ->select('tahun')
+            ->distinct()
+            ->get();
+
+        $email = Auth::user()->email;
+        $id_mahasiswa = Mahasiswa::where('email', $email)->first();
+
+        $mahasiswa = DB::table('table_jadwal_mahasiswa')
+            ->join('table_mahasiswa', 'table_jadwal_mahasiswa.id_mahasiswa', '=', 'table_mahasiswa.id')
+            ->join('table_jadwal as tj', 'table_jadwal_mahasiswa.id_jadwal', '=', 'tj.id')
+            ->join('table_matkul', 'tj.id_matkul', '=', 'table_matkul.id')
+            ->select(
+                'table_mahasiswa.*',
+                'tj.hari as hari',
+                'tj.jam_m as jam_mulai',
+                'tj.jam_k as jam_selesai',
+                'table_matkul.kode as kode_matkul',
+                'table_matkul.nama as nama_matkul', // Alias kolom untuk nama matkul
+                'table_matkul.id as id_matkul',
+                'tj.id as id_jadwal'
+            )
+            ->where('table_jadwal_mahasiswa.id_mahasiswa', $id_mahasiswa->id)
+            ->where('table_matkul.tahun', $tahun)
+            ->get();
+        return view('backend.modul_mahasiswa.dashboard', compact('mahasiswa', 'tahunn'));
     }
 
     public function kelas($id)
@@ -101,7 +135,12 @@ class MahasiswaController extends Controller
         $id_mahasiswa = Mahasiswa::where('email', $email)->first();
 
         $kelas = Kelas::findOrFail($id);
-        $aktifitas = Aktifitas::where('id_kelas', $id)->get();
+        // $aktifitas = Aktifitas::where('id_kelas', $id)->get();
+        $aktifitas = Aktifitas::where('id_kelas', $id)
+        ->leftJoin('table_mahasiswa', 'table_aktifitas.id_pengguna', '=', 'table_mahasiswa.nim')
+        ->leftJoin('table_dosen', 'table_aktifitas.id_pengguna', '=', 'table_dosen.nidn')
+        ->select('table_aktifitas.*', 'table_mahasiswa.nama as nama_m', 'table_dosen.nama as nama_d')
+        ->get();
         $tugas = Tugas::where('id_kelas', $id)->where('id_mahasiswa', $id_mahasiswa->id)->first();
         return view('backend.modul_mahasiswa.aktifitas', compact('kelas', 'aktifitas', 'tugas'));
     }
@@ -116,7 +155,7 @@ class MahasiswaController extends Controller
             'id_jadwal' => $kelas->id_jadwal,
             'id_matkul' => $kelas->id_matkul,
             'id_rps' => $kelas->id,
-            'id_pengguna' => $id_mahasiswa->id,
+            'id_pengguna' => $id_mahasiswa->nim,
             'id_kelas' => $kelas->id,
             'pesan' => Request()->pesan
         ]);
@@ -209,45 +248,45 @@ class MahasiswaController extends Controller
 
         // Ambil semua jadwal yang diambil oleh mahasiswa
         $jadwals = DB::table('table_jadwal_mahasiswa')
-        ->where('id_mahasiswa', $id_mahasiswa)
-        ->pluck('id_jadwal');
+            ->where('id_mahasiswa', $id_mahasiswa)
+            ->pluck('id_jadwal');
 
-    // Query untuk mendapatkan nilai per mata kuliah
-    $nilaiPerMatkul = DB::table('table_matkul')
-        ->join('table_rps', 'table_matkul.id', '=', 'table_rps.id_matkul')
-        ->leftJoin('table_absen_mahasiswa', function($join) use ($id_mahasiswa) {
-            $join->on('table_rps.id', '=', 'table_absen_mahasiswa.id_rps')
-                 ->where('table_absen_mahasiswa.id_mahasiswa', '=', $id_mahasiswa);
-        })
-        ->select('table_matkul.kode as matkul_id', 'table_matkul.nama as matkul_nama', DB::raw('SUM(table_rps.bobot) as total_bobot_rps'), DB::raw('SUM(table_absen_mahasiswa.absen) as total_absen'))
-        ->whereIn('table_rps.id_jadwal', $jadwals)
-        ->groupBy('table_matkul.id', 'table_matkul.nama')
-        ->get()
-        ->map(function($item) {
-            // Hitung bobot absensi
-            $bobotAbsensi = 30;
-            $totalBobotRPS = $item->total_bobot_rps;
-            $totalAbsen = $item->total_absen;
+        // Query untuk mendapatkan nilai per mata kuliah
+        $nilaiPerMatkul = DB::table('table_matkul')
+            ->join('table_rps', 'table_matkul.id', '=', 'table_rps.id_matkul')
+            ->leftJoin('table_absen_mahasiswa', function ($join) use ($id_mahasiswa) {
+                $join->on('table_rps.id', '=', 'table_absen_mahasiswa.id_rps')
+                    ->where('table_absen_mahasiswa.id_mahasiswa', '=', $id_mahasiswa);
+            })
+            ->select('table_matkul.kode as matkul_id', 'table_matkul.nama as matkul_nama', DB::raw('SUM(table_rps.bobot) as total_bobot_rps'), DB::raw('SUM(table_absen_mahasiswa.absen) as total_absen'))
+            ->whereIn('table_rps.id_jadwal', $jadwals)
+            ->groupBy('table_matkul.id', 'table_matkul.nama')
+            ->get()
+            ->map(function ($item) {
+                // Hitung bobot absensi
+                $bobotAbsensi = 30;
+                $totalBobotRPS = $item->total_bobot_rps;
+                $totalAbsen = $item->total_absen;
 
-            // Hitung nilai per mata kuliah
-            $nilaiPerMatkul = ($totalBobotRPS + $bobotAbsensi) / 100;
+                // Hitung nilai per mata kuliah
+                $nilaiPerMatkul = ($totalBobotRPS + $bobotAbsensi) / 100;
 
-            return (object) [
-                'matkul_id' => $item->matkul_id,
-                'matkul_nama' => $item->matkul_nama,
-                'nilai' => $nilaiPerMatkul
-            ];
-        });
+                return (object) [
+                    'matkul_id' => $item->matkul_id,
+                    'matkul_nama' => $item->matkul_nama,
+                    'nilai' => $nilaiPerMatkul
+                ];
+            });
 
-    // Hitung KHS
-    $totalNilaiKHS = $nilaiPerMatkul->sum('nilai');
+        // Hitung KHS
+        $totalNilaiKHS = $nilaiPerMatkul->sum('nilai');
 
-    // Kembalikan view dengan data
-    return view('backend.modul_mahasiswa.khs', [
-        'nilaiPerMatkul' => $nilaiPerMatkul,
-        'totalNilaiKHS' => $totalNilaiKHS
-    ]);
-}
+        // Kembalikan view dengan data
+        return view('backend.modul_mahasiswa.khs', [
+            'nilaiPerMatkul' => $nilaiPerMatkul,
+            'totalNilaiKHS' => $totalNilaiKHS
+        ]);
+    }
 
 
     public function khs()

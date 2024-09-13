@@ -1,20 +1,43 @@
 @extends('../backenddosen')
+
+@section('tahun_ajaran')
+    <li class="nav-item dropdown d-none d-lg-block">
+        <a class="nav-link dropdown-bordered dropdown-toggle dropdown-toggle-split" id="messageDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">Pilih Tahun Ajaran </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="messageDropdown">
+            <a class="dropdown-item py-3">
+                <p class="mb-0 fw-medium float-start">Tahun Ajaran</p>
+            </a>
+            <div class="dropdown-divider"></div>
+            @foreach ($tahunn as $thn)
+                <a class="dropdown-item preview-item" href="{{url('dosen/matkul/tahun/'.$thn->tahun)}}">
+                    <div class="preview-item-content flex-grow py-2">
+                        <p class="preview-subject ellipsis fw-medium text-dark">{{ $thn->tahun }} </p>
+                        {{-- <p class="fw-light small-text mb-0">This is a Bundle featuring 16 unique dashboards --}}
+                        </p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </li>
+@endsection
 @section('content')
     <div class="row mb-5">
-        @foreach ($jadwal as $j )
-        <div class="col-md-6 col-lg-4 mb-3">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">{{$j->nama}}</h5>
-
-                    <img class="img-fluid d-flex mx-auto my-4" src="{{asset('backend/dist/assets/images/belajar.png')}}" alt="Card image cap" />
-                    <h6 class="card-subtitle text-muted">{{$j->hari}}</h6>
-                    <p class="card-text">{{$j->jam_m}} - {{$j->jam_k}}</p>
-                    <a href="{{url('input/rps/'.$j->id)}}" class="card-link">Input RPS</a>
-                    <a href="{{url('dosen/jadwal/'.$j->id)}}" class="card-link">Kelas</a>
+        @foreach ($jadwal as $j)
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $j->nama }}</h5>
+                        <p class="card-text">{{$j->tahun}}</p>
+                        <img class="img-fluid d-flex mx-auto my-4"
+                            src="{{ asset('backend/dist/assets/images/belajar.png') }}" alt="Card image cap" />
+                        <h6 class="card-subtitle text-muted">{{ $j->hari }}</h6>
+                        <p class="card-text">{{ $j->jam_m }} - {{ $j->jam_k }}</p>
+                        <a href="{{ url('input/rps/' . $j->id) }}" class="card-link">Input RPS</a>
+                        <a href="{{ url('dosen/jadwal/' . $j->id) }}" class="card-link">Kelas</a>
+                    </div>
                 </div>
             </div>
-        </div>
         @endforeach
         {{-- <div class="col-md-6 col-lg-4 mb-3">
             <div class="card h-100">

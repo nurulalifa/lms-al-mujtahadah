@@ -9,6 +9,6 @@ class Matkul extends Model
 {
     // use HasFactory;
     protected $table ='table_matkul';
-    protected $fillable = ['nama','kode','bobot','id_ruangan'];
+    protected $fillable = ['nama','kode','bobot','id_ruangan','semester','tahun','prodi'];
 
 }

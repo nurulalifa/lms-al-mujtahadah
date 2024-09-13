@@ -5,6 +5,7 @@ namespace App\Http\Controllers\LMS\modul_master;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
+use App\Models\Prodi;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,8 @@ class DosenController extends Controller
         return view('backend.modul_master.dosen.daftar', compact('data'));
     }
     public function tambah_dosen(){
-        return view('backend.modul_master.dosen.form');
+        $prodi = Prodi::all();
+        return view('backend.modul_master.dosen.form',compact('prodi'));
     }
     public function delete_dosen($id){
         $dosen = dosen::findOrFail($id);

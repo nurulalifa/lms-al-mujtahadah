@@ -5,6 +5,7 @@ namespace App\Http\Controllers\LMS\modul_master;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
+use App\Models\Prodi;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +18,8 @@ class MahasiswaController extends Controller
         return view('backend.modul_master.mahasiswa.daftar', compact('data'));
     }
     public function tambah_mahasiswa(){
-        return view('backend.modul_master.mahasiswa.form');
+        $prodi = Prodi::all();
+        return view('backend.modul_master.mahasiswa.form', compact('prodi'));
     }
     public function simpan_mahasiswa(Request $request){
         Mahasiswa::create([
@@ -29,7 +31,8 @@ class MahasiswaController extends Controller
             'agama'=>$request->agama,
             'asal_sekolah'=>$request->asal_sekolah,
             'email'=>$request->email,
-            'tahun_masuk'=>$request->tahun_masuk
+            'tahun_masuk'=>$request->tahun_masuk,
+            'prodi'=>$request->prodi
         ]);
         User::create([
             'name' =>Request()->nama,

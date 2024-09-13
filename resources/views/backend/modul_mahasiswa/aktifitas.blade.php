@@ -13,7 +13,7 @@
                             @foreach ($aktifitas as $a)
                                 <li>
                                     <div class="d-flex justify-content-between">
-                                        <div><span class="text-light-green">{{ $a->id_pengguna }},</span> {{ $a->pesan }}
+                                        <div><span class="text-light-green">{{ $a->nama_m }}{{$a->nama_d}},</span> {{ $a->pesan }}
                                         </div>
                                         <p>{{ $a->created_at }}</p>
                                     </div>

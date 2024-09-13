@@ -26,7 +26,12 @@ Route::get('/',[FrontendController::class, 'index']);
 // Route::get('/login',[FrontendController::class, 'formlogin']);
 // Route::get('/register',[FrontendController::class,'formregister']);
 
-
+// Route::namespace('App\Http\Controllers\Web')->group(function () {
+//     route::get('/', [Home::class, 'index']);
+//     Route::get('/webadmin', [Login::class, 'index'])->name('Web.Login');
+//     Route::post('/proseslogin', [Login::class, 'proseslogin']);
+//     Route::get('/DashboardWeb', [DashboardWeb::class, 'index'])->name('Web.DashboardWeb');;
+// });
 
 
 Auth::routes();
@@ -102,6 +107,8 @@ Route::get('/jadwalkul/mahasiswa/hapus/{id}/{id_mahasiswa}',[Modul_masterJadwalC
 //RPS
 Route::group(['middleware' => ['auth', 'role:dosen']], function() {
 Route::get('/dosen/matkul',[Modul_Dosen::class,'index'])->name('dosen.matkul');
+Route::get('/dosen/matkul/tahun/{tahun}',[Modul_Dosen::class,'index2']);
+
 Route::get('input/rps/{id}',[Modul_Dosen::class,'daftar_rps'])->name('rps');
 Route::get('rps/form/{id}',[RPSController::class,'form_rps']);
 Route::post('rps/simpan/',[RPSController::class,'simpan_rps']);
@@ -127,6 +134,7 @@ Route::post('dosen/absen/simpan/{id}',[Dosen_JadwalController::class, 'simpan_ab
 
 Route::group(['middleware' => ['auth', 'role:mahasiswa']], function() {
 Route::get('mahasiswa/dashboard',[Mahasiswa_Controller::class, 'index'])->name('mahasiswa.dashboard');
+Route::get('/mahasiswa/matkul/tahun/{tahun}',[Mahasiswa_Controller::class,'index2']);
 Route::get('mahasiswa/kelas/{id}',[Mahasiswa_Controller::class, 'kelas']);
 Route::get('mahasiswa/kelas/detail/{id}',[Mahasiswa_Controller::class,'detail_kelas']);
 Route::get('mahasiswa/absen/{id}',[Mahasiswa_Controller::class, 'absen']);

@@ -73,7 +73,16 @@
                         <input type="text" class="form-control" id="exampleFormControlInput1"
                             placeholder="Tahun Masuk" name="tahun_masuk" />
                     </div>
-
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1" class="form-label">Pilih Prodi </label>
+                        <select name="prodi" class="form-select" id="exampleFormControlSelect1"
+                            aria-label="Default select example">
+                            <option>Pilih Prodi</option>
+                            @foreach ($prodi as $prod )
+                            <option value="{{$prod->id}}">{{$prod->nama_prodi}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="html5-date-input" class="form-label"></label>
                         <div>
