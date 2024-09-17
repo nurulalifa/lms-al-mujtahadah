@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\BackendController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Web\Home;
+use App\Http\Controllers\Web\Login;
+use App\Http\Controllers\Web\DashboardWeb;
 use App\Http\Controllers\LMS\modul_master\DosenController as Modul_masterDosenController;
 use App\Http\Controllers\LMS\modul_master\JadwalController as Modul_masterJadwalController;
 use App\Http\Controllers\LMS\modul_master\MahasiswaController as Modul_masterMahasiswaController;
@@ -22,16 +25,16 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 // });
 
 //frontend
-Route::get('/',[FrontendController::class, 'index']);
+// Route::get('/',[FrontendController::class, 'index']);
 // Route::get('/login',[FrontendController::class, 'formlogin']);
 // Route::get('/register',[FrontendController::class,'formregister']);
 
-// Route::namespace('App\Http\Controllers\Web')->group(function () {
-//     route::get('/', [Home::class, 'index']);
-//     Route::get('/webadmin', [Login::class, 'index'])->name('Web.Login');
-//     Route::post('/proseslogin', [Login::class, 'proseslogin']);
-//     Route::get('/DashboardWeb', [DashboardWeb::class, 'index'])->name('Web.DashboardWeb');;
-// });
+Route::namespace('App\Http\Controllers\Web')->group(function () {
+    route::get('/', [Home::class, 'index']);
+    Route::get('/webadmin', [Login::class, 'index'])->name('Web.Login');
+    Route::post('/proseslogin', [Login::class, 'proseslogin']);
+    Route::get('/DashboardWeb', [DashboardWeb::class, 'index'])->name('Web.DashboardWeb');;
+});
 
 
 Auth::routes();
@@ -43,6 +46,18 @@ Route::post('password/change/dosen', [ChangePasswordController::class, 'updatePa
 Route::post('password/change/mahasiswa', [ChangePasswordController::class, 'updatePassword_mahasiswa'])->name('password.change.mahasiswa');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function() {
+
+//website
+Route::get('berita/daftar',[BackendController::class,'daftar_berita']);
+Route::get('berita/detail/{id_berita}',[BackendController::class,'detail_berita']);
+Route::get('berita/edit/{id_berita}',[BackendController::class,'edit_berita']);
+Route::post('berita/update/{id_berita}',[BackendController::class,'update_berita']);
+Route::get('berita/tambah',[BackendController::class,'tambah_berita']);
+Route::post('berita/simpan',[BackendController::class,'simpan_berita']);
+
+
+
+
 //user
 Route::get('/user/daftar',[BackendController::class,'daftar_user']);
 Route::get('/user/tambah',[BackendController::class,'tambah_user']);
