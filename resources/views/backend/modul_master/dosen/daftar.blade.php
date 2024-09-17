@@ -43,7 +43,7 @@
                                                 <a class="dropdown-item" href="{{ url('dosen/edit/' . $data->id) }}">Edit</a>
                                                 <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item"
-                                                    href="{{ url('dosen/delete' . $data->id) }}">Delete</a>
+                                                    href="{{ url('dosen/delete/' . $data->id) }}">Delete</a>
                                             </div>
                                         </div>
                                     </td>

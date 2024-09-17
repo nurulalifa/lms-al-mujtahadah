@@ -55,6 +55,9 @@ Route::post('berita/update/{id_berita}',[BackendController::class,'update_berita
 Route::get('berita/tambah',[BackendController::class,'tambah_berita']);
 Route::post('berita/simpan',[BackendController::class,'simpan_berita']);
 
+Route::get('kata/sambutan',[BackendController::class,'kata_sambutan']);
+Route::post('sambutan/update/{id}',[BackendController::class,'update_sambutan']);
+
 
 
 

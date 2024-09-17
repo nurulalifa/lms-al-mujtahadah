@@ -22,6 +22,8 @@ class DosenController extends Controller
     }
     public function delete_dosen($id){
         $dosen = dosen::findOrFail($id);
+        $user = User::where('email',$dosen->email)->first();
+        $user->delete();
         $dosen->delete();
         return redirect('dosen/daftar');
     }
@@ -70,7 +72,7 @@ class DosenController extends Controller
         unlink('uploads/dosen/'.$dosen->foto);
         }
         $dosen->nama= Request()->nama;
-        $dosen->tgl = Request()->tgl;
+        $dosen->nidn = Request()->nidn;
         $dosen->foto = Request()->foto != ''? $new_foto:$dosen->foto  ;
         $dosen->univ = Request()->univ;
         $dosen->kategori = request()->kategori;

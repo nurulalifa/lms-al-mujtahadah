@@ -72,22 +72,7 @@
                         <div class="content">
                             <h3>Sambutan Ketua <br><strong>Selamat Datang di STAI Al-Mujtahadah</strong></h3>
                             <p>
-                                Assalamualaikum Warahmatullahi Wabarakatuh
-
-                                Puji syukur atas rahmat dan kasih sayang Allah SWT atas indahnya pengetahuan dan teknologi
-                                yang kita rasakan saat ini. Saya sangat bangga memperkenalkan STAI Al-Mujtahadah (STAIAM)
-                                secara singkat kepada seluruh pembaca.
-                                STAIAM menyediakan disiplin ilmu yang beragam. dengan 3 program studi yang dapat dipilih
-                                oleh mahasiswa sesuai dengan minatnya.
-                                Program studi di STAIAM telah terakreditasi dari BAN-PT.
-
-
-                                Informasi lebih lanjut dan lebih terbarukan tentang STAIAM dapat
-                                diakses melalui website kami ini. Selamat berselancar di satiam.ac.id!
-
-                                Kami senang bisa bertemu Anda di kampus STAIAM.
-
-                                Waalaikumsalam Warahmatullahi Wabarakatuh
+                                {{$sambutan->isi}}
                             </p>
                         </div>
 

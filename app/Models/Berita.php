@@ -14,7 +14,7 @@ class Berita extends Model
     public static function getberita()
     {
         return DB::table('berita')
-            ->orderby('tglpublish', 'desc')
+            ->orderby('tglpublish', 'asc')
             ->take(3)
             ->get();
     }

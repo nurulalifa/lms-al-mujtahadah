@@ -263,6 +263,15 @@
                             <span class="menu-title">Berita</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('kata/sambutan') }}">
+                            <i class="menu-icon fa fa-window-maximize"></i>
+                            <span class="menu-title">Kata Sambutan</span>
+                        </a>
+                    </li>
+
+
+
                     <li class="nav-item nav-category">Master</li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('user/daftar') }}">

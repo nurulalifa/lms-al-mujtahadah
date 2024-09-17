@@ -11,9 +11,9 @@
                             <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Judul Penelitian" value={{$dosen->nama}} name="nama"/>
                           </div>
                           <div class="form-group">
-                            <label for="html5-date-input" class="form-label">tanggal Kelulusan</label>
+                            <label for="html5-date-input" class="form-label">NIPM</label>
                             <div>
-                              <input name="tgl"class="form-control" value={{$dosen->tgl}} type="date" id="html5-date-input" />
+                              <input name="nidn"class="form-control" value="{{$dosen->nidn}}" type="text" id="html5-date-input" />
                             </div>
                           </div>
                           <div class="form-group">

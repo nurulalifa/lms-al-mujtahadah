@@ -11,9 +11,9 @@
                         placeholder="Judul Penelitian" value={{ $dosen->nama }} name="nama" />
                 </div>
                 <div class="form-group">
-                    <label for="html5-date-input" class="form-label">Tanggal Kelulusan</label>
+                    <label for="html5-date-input" class="form-label">NIDN</label>
                     <div>
-                        <input name="tgl"class="form-control" value={{ $dosen->tgl }} readonly type="date"
+                        <input name="tgl"class="form-control" value="{{ $dosen->nidn }}" readonly type="date"
                             id="html5-date-input" />
                     </div>
                 </div>

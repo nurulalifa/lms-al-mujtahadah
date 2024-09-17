@@ -9,6 +9,7 @@ use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\Matkul;
 use App\Models\Ruangan;
+use App\Models\Sambutan;
 use App\Models\User;
 
 use function Ramsey\Uuid\v1;
@@ -71,6 +72,20 @@ class BackendController extends Controller
             'isi'=>Request()->isi,
         ]);
         return redirect('berita/daftar');
+    }
+
+    public function kata_sambutan(){
+        $id = 1;
+        $sambutan = Sambutan::findOrFail($id);
+
+        return view('backend.website.sambutan.form',compact('sambutan'));
+    }
+    public function update_sambutan($id){
+        $sambutan = Sambutan::findOrFail($id);
+        $sambutan->isi = Request()->isi;
+        $sambutan->save();
+        return redirect('kata/sambutan');
+
     }
 
 
